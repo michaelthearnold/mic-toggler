@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import "../../node_modules/react-toggle-switch/dist/css/switch.min.css";
 
 const Container = styled.div`
+  margin: auto;
   width: 300px;
 `;
 
@@ -13,8 +14,15 @@ const StyledSwitch = styled(Switch)`
 `;
 
 const H1 = styled.h1`
+  margin: 5px 0px;
   text-align: center;
-  color: #AAA;
+  color: #666;
+`;
+
+const TwitchChat = styled.iframe`
+  width: 100%;
+  height: 500px;
+  border: 0;
 `;
 
 const MIC = {
@@ -55,12 +63,15 @@ class App extends Component {
     const {switched} = this.state;
 
     return (
-      <Container>
-        <H1>{switched ? "MIC" : "RIFT"}</H1>
-        <StyledSwitch onClick={this.toggleSwitch} 
-          on={switched}
-        />
-      </Container>
+      <div>
+        <TwitchChat src="https://www.twitch.tv/widgitybear/chat"/>
+        <Container>
+          <H1>{switched ? "MIC" : "RIFT"}</H1>
+          <StyledSwitch onClick={this.toggleSwitch} 
+            on={switched}
+          />
+        </Container>
+      </div>
     );
   }
 }
