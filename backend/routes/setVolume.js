@@ -3,9 +3,10 @@ var router = express.Router();
 
 
 router.post('/', function(req, res, next) {
-  console.log("called")
-  console.log(req.body)
-  const pkg = JSON.parse(req.body);
+  console.log("setVolume called", req.body)
+  for(let key in req.body){
+    console.log("key: ",key)
+  }
   res.send('WEW LAD');
 });
 
