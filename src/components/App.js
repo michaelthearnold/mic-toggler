@@ -17,20 +17,18 @@ const H1 = styled.h1`
   color: #AAA;
 `;
 
+const MIC = {
+  MUTED: 1,
+  UNMUTED: 0
+};
+
 class App extends Component {
   state = {
     switched: false
   }
 
-  componentDidMount(){
-    this.setVolume({
-      riftMic: 0,
-      moboMic: 100
-    })
-  }
-
   setVolume(pkg){
-    fetch('/setVolume', {
+    fetch('/muteSource', {
       method: "post",
       headers: {
         Accept: 'application/json',
@@ -45,11 +43,11 @@ class App extends Component {
 
     //contact server to change mic volumes
     const pkg = {
-      MoboMic: switched ? 100 : 0,
-      RiftMic: switched ? 0 : 100
+      [`MoboMic 2`]: switched ? MIC.UNMUTED : MIC.MUTED,
+      [`RiftMic 3`]: switched ? MIC.MUTED : MIC.UNMUTED
     };
     this.setVolume(pkg);
-    
+
     this.setState({switched});
   }
 
